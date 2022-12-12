@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Galaxy Note 20 Ultra",
+        "loction": "Sylhet",
+        "resale-price": 20000,
+        "original-price": 70000,
+        "using-period": "1yr",
+        "posted-date": "Nov 28 2022",
+        "seller": "Dipro",
+        "brand": "Samsung"
+    },
+    {
+        "name": "13 pro",
+        "loction": "Sylhet",
+        "resale-price": 20000,
+        "original-price": 70000,
+        "using-period": "1yr",
+        "posted-date": "Nov 28 2022",
+        "seller": "Dipro",
+        "brand": "Iphone"
+    },
+    {
+        "name": "20x",
+        "loction": "Sylhet",
+        "resale-price": 20000,
+        "original-price": 70000,
+        "using-period": "1yr",
+        "posted-date": "Nov 28 2022",
+        "seller": "Dipro",
+        "brand": "Nokia"
+    }
+]
