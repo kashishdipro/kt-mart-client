@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
     const {register, formState: { errors }, handleSubmit} = useForm();
+    
+    const {logIn} = useContext(AuthContext);
+    const [error, setError] = useState('');
+
     const handleLogin = data =>{
         console.log(data);
+        setError('');
+        logIn(data.email, data.password)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => {
+            console.error(error.message);
+            setError(error.message);
+        })
     }
     return (
         <section className='flex justify-center items-center h-screen m-4'>
@@ -32,12 +47,10 @@ const Login = () => {
                         placeholder="Your Password" className="input input-bordered text-neutral"/>
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
-                    {/* <select {...register("category", { required: true })}>
-                        <option value="">Select...</option>
-                        <option value="A">Option A</option>
-                        <option value="B">Option B</option>
-                    </select> */}
                     <input className='btn btn-secondary w-full text-base-100 mt-4' value='login' type="submit" />
+                    <div>
+                        {error && <p className='text-red-600'>{error}</p>}
+                    </div>
                 </form>
                 <p className='text-center mt-4'>New user <Link to='/signup' className='text-primary'>Sign Up</Link></p>
                 <div className='divider'>OR</div>

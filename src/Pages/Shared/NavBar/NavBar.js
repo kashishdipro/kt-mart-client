@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import logo from '../../../img/logo.png'
 
 const NavBar = () => {
+    const {user, logOut} = useContext(AuthContext);
+    const handleLogOut = () =>{
+        logOut()
+        .then(()=>{})
+        .catch(error => console.error(error))
+    }
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/'>My Orders</Link></li>
+        {user?.uid && <li><Link to='/'>My Orders</Link></li>}
         <li><Link to='/blogs'>Blogs</Link></li>
-        <li><Link to='/login'>Login</Link></li>
+        {user?.uid ? 
+        <li><button onClick={handleLogOut}>Logout</button></li>
+        :<li><Link to='/login'>Login</Link></li>
+        }
     </>
     return (
         <nav className="navbar justify-between bg-neutral-content text-neutral">
