@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="footer footer-center p-4 bg-neutral-content text-base-content">
+        <footer className="footer footer-center p-4 bg-neutral-content text-neutral">
             <div>
                 <p>Copyright © 2022 - All right reserved by <Link className='font-medium' to='/'>KT Mart</Link></p>
             </div>
