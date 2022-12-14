@@ -12,7 +12,7 @@ const NavBar = () => {
     }
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
-        {user?.uid && <li><Link to='/'>My Orders</Link></li>}
+        {user?.uid && <li><Link to='/myorders'>My Orders</Link></li>}
         <li><Link to='/blogs'>Blogs</Link></li>
         {user?.uid ? 
         <li><button onClick={handleLogOut}>Logout</button></li>

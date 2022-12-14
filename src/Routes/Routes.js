@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
-import BrandItems from "../Pages/BrandItems/BrandItems";
+import BrandProducts from "../Pages/BrandProducts/BrandProducts";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
+import MyOrders from "../Pages/MyOrders/MyOrders";
 import SignUp from "../Pages/SignUp/SignUp";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +18,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/brand/:name',
-                element: <BrandItems/>
+                loader: ({params}) =>fetch(`http://localhost:5000/products/${params.name}`),
+                element: <BrandProducts/>
+            },
+            {
+                path: '/myorders',
+                element: <ProtectedRoute><MyOrders/></ProtectedRoute>
             },
             {
                 path: '/signup',

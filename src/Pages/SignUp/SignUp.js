@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const SignUp = () => {
     const {register, formState: { errors }, handleSubmit} = useForm();
 
-    const {createUser} = useContext(AuthContext);
+    const {createUser, updateUserProfile} = useContext(AuthContext);
 
     const handleSignUp = data =>{
         console.log(data);
@@ -14,6 +15,13 @@ const SignUp = () => {
         .then(result =>{
             const user = result.user;
             console.log(user);
+            toast.success('Your are registered successfully');
+            const profile = {
+                displayName: data.name
+            }
+            updateUserProfile(profile)
+            .then(() =>{})
+            .catch(error =>console.error(error))
         })
         .catch(error => console.error(error))
     }
