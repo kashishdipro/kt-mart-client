@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { TiTick } from 'react-icons/ti';
+import BookingModal from './BookingModal/BookingModal';
 
 const BrandProducts = () => {
     const products = useLoaderData();
     console.log(products);
+    const [product, setProduct] = useState(null);
     return (
         <section className='m-4 h-screen'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
@@ -20,13 +22,18 @@ const BrandProducts = () => {
                             <p>Posted Date: <strong>{product.posted_date}</strong></p>
                             <p>Seller: <strong>{product.seller}</strong> {product.genuine_seller === 'true' && <TiTick className='text-blue-600'/>}</p>
                             <div className="card-actions">
-                                <button className="btn btn-primary">Buy Now</button>
+                                <label htmlFor="booking-modal" className="btn btn-primary" onClick={() =>setProduct(product)}>Book Now</label>
                             </div>
                         </div>
                     </div>)
                 }
-                
             </div>
+            {   product &&
+                <BookingModal
+                product={product}
+                setProduct={setProduct}
+                />
+            }
         </section>
     );
 };
