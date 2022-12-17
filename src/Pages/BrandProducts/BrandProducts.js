@@ -11,8 +11,8 @@ const BrandProducts = () => {
         <section className='m-4 h-screen'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
-                    products?.map(product =><div key={product._id} className="card bg-primary-content md:card-side w-80 shadow-xl">
-                        <figure><img className='w-auto md:h-full h-60' src={product.img} alt="Phone" /></figure>
+                    products?.map(product =><div key={product._id} className="card bg-primary-content card-side w-80 shadow-xl">
+                        <figure><img className='w-full h-full' src={product.img} alt="Phone" /></figure>
                         <div className="card-body">
                             <h2 className="card-title text-neutral">{product.brand} {product.model}</h2>
                             <p>Location: <strong>{product.location}</strong></p>

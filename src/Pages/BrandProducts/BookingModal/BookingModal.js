@@ -5,7 +5,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({product, setProduct}) => {
     const {register, formState: { errors }, handleSubmit} = useForm();
-    const {brand, model, resale_price, seller} = product;
+    const {_id, brand, model, resale_price, seller} = product;
     const {user} = useContext(AuthContext);
 
     const locations = [
@@ -33,6 +33,8 @@ const BookingModal = ({product, setProduct}) => {
             if(data.acknowledged){
                 toast.success('Booking Confirmed');
                 setProduct(null);
+            }else{
+                toast.error(data.message);
             }
         })
     }
@@ -49,6 +51,9 @@ const BookingModal = ({product, setProduct}) => {
                         className="input input-bordered input-primary w-full" />
                         <input type="text" disabled value={user?.email} 
                         {...register("email", {value: user?.email})}
+                        className="input input-bordered input-primary w-full" />
+                        <input hidden type="text" disabled value={_id} 
+                        {...register("product_id", {value: _id})}
                         className="input input-bordered input-primary w-full" />
                         <input type="text" disabled value={brand} 
                         {...register("brand", {value: brand})}
