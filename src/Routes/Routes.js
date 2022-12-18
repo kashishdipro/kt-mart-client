@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import BrandProducts from "../Pages/BrandProducts/BrandProducts";
-import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import MakeAdmin from "../Pages/Dashboard/MakeAdmin/MakeAdmin";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -38,8 +38,12 @@ const router = createBrowserRouter([
         element: <ProtectedRoute><DashboardLayout/></ProtectedRoute>,
         children: [
             {
-                path:'/dashboard',
-                element:<ProtectedRoute><MyOrders/></ProtectedRoute>
+                path: '/dashboard',
+                element: <ProtectedRoute><MyOrders/></ProtectedRoute>
+            },
+            {
+                path: '/dashboard/makeadmin',
+                element: <MakeAdmin/>
             }
         ]
     }

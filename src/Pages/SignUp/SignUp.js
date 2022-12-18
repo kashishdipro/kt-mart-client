@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const SignUp = () => {
@@ -9,8 +9,9 @@ const SignUp = () => {
 
     const {createUser, updateUserProfile} = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
     const handleSignUp = data =>{
-        console.log(data);
         createUser(data.email, data.password)
         .then(result =>{
             const user = result.user;
@@ -20,11 +21,31 @@ const SignUp = () => {
                 displayName: data.name
             }
             updateUserProfile(profile)
-            .then(() =>{})
+            .then(() =>{
+                saveUser(data.name, data.email);
+            })
             .catch(error =>console.error(error))
         })
         .catch(error => console.error(error))
     }
+
+    const saveUser = (name, email) =>{
+        const user = {name, email};
+        fetch('http://localhost:5000/users/', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.acknowledged){
+                navigate('/');
+            }
+        })
+    }
+
     return (
         <section className='flex justify-center items-center h-screen m-4'>
             <div className='w-96 p-5 card shadow-xl'>
