@@ -1,15 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const {register, formState: { errors }, handleSubmit} = useForm();
 
     const {createUser, updateUserProfile} = useContext(AuthContext);
 
+    const [createUserEmail, setCreateUserEmail] = useState('');
+    const [token] = useToken(createUserEmail);
+    
     const navigate = useNavigate();
+
+    if(token){
+        navigate('/');
+    }
 
     const handleSignUp = data =>{
         createUser(data.email, data.password)
@@ -41,18 +49,7 @@ const SignUp = () => {
         .then(res => res.json())
         .then(data =>{
             if(data.acknowledged){
-                getUserToken(email);
-            }
-        })
-    }
-
-    const getUserToken = email =>{
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-        .then(res => res.json())
-        .then(data =>{
-            if(data.accessToken){
-                localStorage.setItem('accessToken', data.accessToken);
-                navigate('/');
+                setCreateUserEmail(email);
             }
         })
     }
