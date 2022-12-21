@@ -22,15 +22,15 @@ const SignUp = () => {
             }
             updateUserProfile(profile)
             .then(() =>{
-                saveUser(data.name, data.email);
+                saveUser(data.name, data.email, data.role);
             })
             .catch(error =>console.error(error))
         })
         .catch(error => console.error(error))
     }
 
-    const saveUser = (name, email) =>{
-        const user = {name, email};
+    const saveUser = (name, email, role) =>{
+        const user = {name, email, role};
         fetch('http://localhost:5000/users/', {
             method: 'POST',
             headers: {
@@ -41,6 +41,17 @@ const SignUp = () => {
         .then(res => res.json())
         .then(data =>{
             if(data.acknowledged){
+                getUserToken(email);
+            }
+        })
+    }
+
+    const getUserToken = email =>{
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+        .then(res => res.json())
+        .then(data =>{
+            if(data.accessToken){
+                localStorage.setItem('accessToken', data.accessToken);
                 navigate('/');
             }
         })
@@ -81,11 +92,16 @@ const SignUp = () => {
                         placeholder="Your Password" className="input input-bordered text-neutral"/>
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
-                    {/* <select {...register("category", { required: true })}>
-                        <option value="">Select...</option>
-                        <option value="A">Option A</option>
-                        <option value="B">Option B</option>
-                    </select> */}
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Who are you?</span>
+                        </label>
+                        <select className="select select-primary w-full" 
+                        {...register("role")}>
+                            <option>Buyer</option>
+                            <option>Seller</option>
+                        </select>
+                    </div>
                     <input className='btn btn-secondary w-full text-base-100 mt-4' value='Sign Up' type="submit" />
                 </form>
                 <p className='text-center mt-4'>Already have an account <Link to='/login' className='text-primary'>Login</Link></p>
