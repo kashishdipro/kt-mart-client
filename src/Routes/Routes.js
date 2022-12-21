@@ -8,6 +8,7 @@ import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import AdminRoute from "./AdminRoute/AdminRoute";
+import BuyerRoute from "./BuyerRoute/BuyerRoute";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -39,8 +40,8 @@ const router = createBrowserRouter([
         element: <ProtectedRoute><DashboardLayout/></ProtectedRoute>,
         children: [
             {
-                path: '/dashboard',
-                element: <ProtectedRoute><MyOrders/></ProtectedRoute>
+                path: '/dashboard/myorders',
+                element: <BuyerRoute><MyOrders/></BuyerRoute>
             },
             {
                 path: '/dashboard/makeadmin',
