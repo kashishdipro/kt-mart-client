@@ -3,6 +3,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import BrandProducts from "../Pages/BrandProducts/BrandProducts";
 import MakeAdmin from "../Pages/Dashboard/MakeAdmin/MakeAdmin";
+import AllBuyers from "../Pages/Dashboard/AllBuyers/AllBuyers";
 import MyOrders from "../Pages/Dashboard/MyOrders/MyOrders";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -10,6 +11,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import BuyerRoute from "./BuyerRoute/BuyerRoute";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
+import AllSellers from "../Pages/Dashboard/AllSellers/AllSellers";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myorders',
                 element: <BuyerRoute><MyOrders/></BuyerRoute>
+            },
+            {
+                path: '/dashboard/allsellers',
+                element: <AdminRoute><AllSellers/></AdminRoute>
+            },
+            {
+                path: '/dashboard/allbuyers',
+                element: <AdminRoute><AllBuyers/></AdminRoute>
             },
             {
                 path: '/dashboard/makeadmin',
