@@ -5,7 +5,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({product, setProduct}) => {
     const {register, formState: { errors }, handleSubmit} = useForm();
-    const {_id, brand, model, resale_price, seller} = product;
+    const {_id, brand, model, resale_price, seller_name} = product;
     const {user} = useContext(AuthContext);
 
     const locations = [
@@ -64,8 +64,8 @@ const BookingModal = ({product, setProduct}) => {
                         <input type="text" disabled value={resale_price} 
                         {...register("resale_price", {value: resale_price})}
                         className="input input-bordered input-primary w-full" />
-                        <input type="text" disabled value={seller} 
-                        {...register("seller", {value: seller})}
+                        <input type="text" disabled value={seller_name} 
+                        {...register("seller_name", {value: seller_name})}
                         className="input input-bordered input-primary w-full" />
                         <input type="tel" placeholder='Your Phone Number' 
                         {...register("phone", {required:"Phone number is required"})}

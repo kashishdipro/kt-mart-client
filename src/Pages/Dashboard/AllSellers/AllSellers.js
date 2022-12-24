@@ -12,7 +12,7 @@ const AllSellers = () => {
     })
     return (
         <section className='m-4'>
-            <h2 className='text-2xl text-neutral font-medium mb-4'>All Buyers</h2>
+            <h2 className='text-2xl text-neutral font-medium mb-4'>All Sellers</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     <thead>

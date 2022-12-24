@@ -95,8 +95,8 @@ const SignUp = () => {
                         </label>
                         <select className="select select-primary w-full" 
                         {...register("role")}>
-                            <option>Buyer</option>
-                            <option>Seller</option>
+                            <option>buyer</option>
+                            <option>seller</option>
                         </select>
                     </div>
                     <input className='btn btn-secondary w-full text-base-100 mt-4' value='Sign Up' type="submit" />
