@@ -39,7 +39,8 @@ const AddAProduct = () => {
                     seller_name: user?.displayName,
                     seller_email: user?.email,
                     posted_date: moment().format("MMM D YYYY"),
-                    img: imgData.data.url
+                    img: imgData.data.url,
+                    status: "available",
                 }
                 fetch('http://localhost:5000/products', {
                     method: 'POST',
