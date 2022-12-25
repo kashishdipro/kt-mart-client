@@ -14,6 +14,7 @@ import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import AllSellers from "../Pages/Dashboard/AllSellers/AllSellers";
 import AddAProduct from "../Pages/Dashboard/AddAProduct/AddAProduct";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
+import SellerRoute from "./SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
     {
@@ -49,11 +50,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addaproduct',
-                element: <AddAProduct/>
+                element: <SellerRoute><AddAProduct/></SellerRoute>
             },
             {
                 path: '/dashboard/myproducts',
-                element: <MyProducts/>
+                element: <SellerRoute><MyProducts/></SellerRoute>
             },
             {
                 path: '/dashboard/allsellers',
