@@ -30,6 +30,26 @@ const MyProducts = () => {
             })
         }
     }
+
+    const handleStatusUpdate = id =>{
+        const proceed = window.confirm('Are you sure, you want to advertise this product?');
+        if(proceed){
+            fetch(`http://localhost:5000/products/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({status: 'advertised'}) 
+            })
+            .then(res => res.json())
+            .then(data =>{
+                if(data.modifiedCount > 0){
+                    toast.success('Advertised Successfully');
+                    refetch();
+                }
+            })
+        }
+    }
     return (
         <section className='m-4'>
             <h2 className='text-2xl text-neutral font-medium mb-4'>My Products</h2>
@@ -60,7 +80,7 @@ const MyProducts = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td><button className='btn btn-xs btn-outline btn-primary'>{product.status}</button></td>
+                                <td><button onClick={() =>handleStatusUpdate(product._id)} className='btn btn-xs btn-outline btn-primary'>{product.status}</button></td>
                                 <td><button onClick={() =>handleDelete(product._id)} className='text-red-700 hover:text-red-900 p-2'><FaTrashAlt/></button></td>
                             </tr>)
                         }
