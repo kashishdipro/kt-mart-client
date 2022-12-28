@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { TiTick } from 'react-icons/ti';
-import BookingModal from './BookingModal/BookingModal';
+import BookingModal from '../Shared/BookingModal/BookingModal';
 
 const BrandProducts = () => {
     const products = useLoaderData();
-    console.log(products);
     const [product, setProduct] = useState(null);
     return (
         <section className='m-4'>

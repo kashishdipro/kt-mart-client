@@ -65,13 +65,13 @@ const MyProducts = () => {
                     </thead>
                     <tbody>
                         {
-                            products.map((product, idx) =><tr key={product._id}>
+                            products?.map((product, idx) =><tr key={product._id}>
                                 <th>{idx+1}</th>
                                 <td>
                                     <div className="flex items-center space-x-3">
                                         <div className="avatar">
                                         <div className="mask mask-squircle w-12 h-12">
-                                            <img src={product.img} alt="Phone" />
+                                            <img src={product?.img} alt="Phone" />
                                         </div>
                                         </div>
                                         <div>
@@ -80,7 +80,7 @@ const MyProducts = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td><button onClick={() =>handleStatusUpdate(product._id)} className='btn btn-xs btn-outline btn-primary'>{product.status}</button></td>
+                                <td><p className='mx-2 text-neutral uppercase'>{product.status}</p> {product.status === 'available' && <button onClick={() =>handleStatusUpdate(product._id)} className='btn btn-xs btn-outline btn-primary'>Make advertise</button>}</td>
                                 <td><button onClick={() =>handleDelete(product._id)} className='text-red-700 hover:text-red-900 p-2'><FaTrashAlt/></button></td>
                             </tr>)
                         }
