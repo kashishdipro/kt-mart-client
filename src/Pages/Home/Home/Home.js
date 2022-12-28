@@ -6,9 +6,9 @@ import ProductBrands from '../ProductBrands/ProductBrands';
 
 const Home = () => {
     const {data: advertisies = []} = useQuery({
-        queryKey: ['advertise'],
+        queryKey: ['advertisies'],
         queryFn: async() =>{
-            const res = await fetch('http://localhost:5000/advertise');
+            const res = await fetch('http://localhost:5000/advertisies');
             const data = await res.json();
             return data;
         }
