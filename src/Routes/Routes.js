@@ -15,6 +15,7 @@ import AllSellers from "../Pages/Dashboard/AllSellers/AllSellers";
 import AddAProduct from "../Pages/Dashboard/AddAProduct/AddAProduct";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import SellerRoute from "./SellerRoute/SellerRoute";
+import Blogs from "../Pages/Blogs/Blogs";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
                 path: '/brand/:name',
                 loader: ({params}) =>fetch(`http://localhost:5000/products/${params.name}`),
                 element: <ProtectedRoute><BrandProducts/></ProtectedRoute>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs/>
             },
             {
                 path: '/signup',

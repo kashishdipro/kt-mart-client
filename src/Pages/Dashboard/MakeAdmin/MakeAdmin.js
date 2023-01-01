@@ -13,7 +13,9 @@ const MakeAdmin = () => {
     })
 
     const handleMakeAdmin = id =>{
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        const proceed = window.confirm('Are you sure, you want to make this user as a admin');
+        if(proceed){
+            fetch(`http://localhost:5000/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -26,6 +28,7 @@ const MakeAdmin = () => {
                 refetch();
             }
         })
+        }
     }
 
     return (
