@@ -16,6 +16,7 @@ import AddAProduct from "../Pages/Dashboard/AddAProduct/AddAProduct";
 import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import SellerRoute from "./SellerRoute/SellerRoute";
 import Blogs from "../Pages/Blogs/Blogs";
+import NotFound from "../Pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login/>
+            },
+            {
+                path: '*',
+                element: <NotFound/>
             }
         ]
     },
