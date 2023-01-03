@@ -20,28 +20,38 @@ const MyOrders = () => {
     })
     return (
         <section className='m-4'>
-            <h2 className='text-2xl text-neutral font-medium mb-4'>My Orders</h2>
-            <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Product Title</th>
-                            <th>Product Price</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            bookings?.map((booking, idx) =><OrderRow
-                            key={idx}
-                            idx={idx}
-                            booking={booking}
-                            />)
-                        }
-                    </tbody>
-                </table>
-            </div>
+            {
+                bookings?.length !== 0 ?
+                <>
+                <h2 className='text-2xl text-neutral font-medium mb-4'>My Orders</h2>
+                <div className="overflow-x-auto">
+                    <table className="table table-zebra w-full">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Product Title</th>
+                                <th>Product Price</th>
+                                <th>Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                bookings?.map((booking, idx) =><OrderRow
+                                key={idx}
+                                idx={idx}
+                                booking={booking}
+                                />)
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                </>
+                :
+                <div className='flex items-center justify-center'>
+                    <h2 className='text-red-500 md:text-2xl text-xl font-bold'>No Order Found</h2>
+                </div>
+            }
+            
         </section>
     );
 };

@@ -23,16 +23,13 @@ const Login = () => {
     }
 
     const handleLogin = data =>{
-        console.log(data);
         setError('');
         logIn(data.email, data.password)
         .then(result =>{
             const user = result.user;
-            console.log(user);
             setLoginUserEmail(data.email);
         })
         .catch(error => {
-            console.error(error.message);
             setError(error.message);
         })
     }

@@ -30,8 +30,8 @@ const AddAProduct = () => {
                 const product = {
                     brand: data.brand,
                     model: data.model,
-                    resale_price: data.resale_price,
-                    original_price: data.original_price,
+                    resale_price: parseInt(data.resale_price),
+                    original_price: parseInt(data.original_price),
                     condition_type: data.condition_type,
                     seller_phone: data.seller_phone,
                     seller_location: data.seller_location,
