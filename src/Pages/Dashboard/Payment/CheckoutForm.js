@@ -10,7 +10,7 @@ const CheckoutForm = ({data}) => {
     const [transactionId, setTransactionId] = useState('');
     const [processing, setProcessing] = useState(false);
 
-    const {buyer, email, resale_price} = data;
+    const {buyer, email, resale_price, product_id, _id} = data;
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -69,8 +69,30 @@ const CheckoutForm = ({data}) => {
             return;
         }
         if(paymentIntent.status === "succeeded"){
-            setSuccess('Congrats! Your payment completed');
-            setTransactionId(paymentIntent.id)
+            const payment = {
+                booking_id: _id,
+                product_id,
+                buyer_name: buyer,
+                buyer_email: email,
+                transactionId: paymentIntent.id,
+                price: resale_price
+            }
+            fetch('http://localhost:5000/payments', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+            })
+            .then(res =>res.json())
+            .then(data =>{
+                console.log(data);
+                if(data.insertedId){
+                    setSuccess('Congrats! Your payment completed');
+                    setTransactionId(paymentIntent.id)
+                }
+            })
         }
         setProcessing(false);
     }
@@ -93,7 +115,7 @@ const CheckoutForm = ({data}) => {
                     },
                     }}
                 />
-                <button  className="btn btn-primary btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret || processing}>
+                <button  className="btn btn-primary btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret || processing || transactionId}>
                     Pay
                 </button>
             </form>
