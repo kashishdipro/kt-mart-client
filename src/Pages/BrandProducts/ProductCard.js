@@ -1,12 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import { TiTick } from 'react-icons/ti';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const ProductCard = ({product, setProduct}) => {
+    const {user} = useContext(AuthContext);
     const {data: seller = []} = useQuery({
         queryKey: ['seller'],
         queryFn: async() =>{
             const res = await fetch(`http://localhost:5000/users/seller/${product?.seller_email}`);
+            const data = await res.json();
+            return data;
+        }
+    })
+    const {data: currentUser = []} = useQuery({
+        queryKey:['user', user?.email],
+        queryFn: async() =>{
+            const res = await fetch(`http://localhost:5000/users/${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -24,9 +34,9 @@ const ProductCard = ({product, setProduct}) => {
                         <p>Years of Use: <strong>{product.using_period}</strong></p>
                         <p>Posted Date: <strong>{product.posted_date}</strong></p>
                         <p className='flex items-center gap-1'>Seller: <strong>{product.seller_name}</strong> {seller?.user?.genuine_seller && <TiTick className='text-blue-600'/>}</p>
-                        <div className="card-actions">
+                        {currentUser?.role !== 'seller' && currentUser?.role !== 'admin' && <div className="card-actions">
                             <label htmlFor="booking-modal" className="btn btn-primary" onClick={() =>setProduct(product)}>Book Now</label>
-                        </div>
+                        </div>}
                     </div>
                 </div>
             }

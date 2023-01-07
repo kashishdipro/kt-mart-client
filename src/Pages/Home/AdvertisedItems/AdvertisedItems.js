@@ -15,6 +15,7 @@ const AdvertisedItems = () => {
     })
     return (
         <section className='my-4'>
+            <h2 className='text-3xl font-bold text-neutral text-center mb-4'>Advertised Items</h2>
             <div className="carousel w-full">
                 {
                     advertisies.map((advertise, idx) =><ItemCard

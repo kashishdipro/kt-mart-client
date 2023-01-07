@@ -9,7 +9,7 @@ const ProductBrands = () => {
         .then(data => setBrandNames(data))
     },[])
     return (
-        <section className='my-5'>
+        <section className='my-4'>
             <h2 className='text-3xl font-bold text-neutral text-center'>Brands</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-5'>
                 {

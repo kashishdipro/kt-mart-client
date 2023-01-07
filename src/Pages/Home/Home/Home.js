@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import AboutUs from '../AboutUs/AboutUs';
 import AdvertisedItems from '../AdvertisedItems/AdvertisedItems';
 import Banner from '../Banner/Banner';
 import ProductBrands from '../ProductBrands/ProductBrands';
@@ -18,6 +19,7 @@ const Home = () => {
             <Banner/>
             {advertisies.length > 0 && <AdvertisedItems/>}
             <ProductBrands/>
+            <AboutUs/>
         </div>
     );
 };
