@@ -1,5 +1,7 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/useToken';
@@ -7,7 +9,8 @@ import useToken from '../../hooks/useToken';
 const Login = () => {
     const {register, formState: { errors }, handleSubmit} = useForm();
     
-    const {logIn} = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+    const {logIn, signInWithGoogle} = useContext(AuthContext);
     const [error, setError] = useState('');
 
     const [loginUserEmail, setLoginUserEmail] = useState('');
@@ -33,8 +36,37 @@ const Login = () => {
             setError(error.message);
         })
     }
+
+    const handleGoogleSignIn = () =>{
+        setError('');
+        signInWithGoogle(googleProvider)
+        .then(result =>{
+            const googleUser = result.user;
+            if(googleUser){
+                const user = {name: googleUser.displayName, email: googleUser.email, role: 'buyer'};
+                setLoginUserEmail(googleUser.email);
+                fetch('http://localhost:5000/users/', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                .then(res => res.json())
+                .then(data =>{
+                    if(data.acknowledged){
+                        toast.success('You are Login with Google Account as a buyer')
+                    }else{
+                        toast(data.message);
+                    }
+                })
+            }
+        })
+        .catch(error =>setError(error.message))
+    }
+
     return (
-        <section className='flex justify-center items-center h-screen m-4'>
+        <section className='flex justify-center items-center h-[800px] m-4'>
             <div className='w-96 p-5 card shadow-xl'>
                 <h2 className='text-3xl font-bold text-center'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
@@ -65,7 +97,7 @@ const Login = () => {
                 </form>
                 <p className='text-center mt-4'>New user <Link to='/signup' className='text-primary'>Sign Up</Link></p>
                 <div className='divider'>OR</div>
-                <button className='btn glass text-neutral w-full'>Continue with Google</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-primary w-full'>Continue with Google</button>
             </div>
         </section>
     );

@@ -55,7 +55,7 @@ const SignUp = () => {
     }
 
     return (
-        <section className='flex justify-center items-center h-screen m-4'>
+        <section className='flex justify-center items-center h-[800px] m-4'>
             <div className='w-96 p-5 card shadow-xl'>
                 <h2 className='text-3xl font-bold text-center'>Sign Up</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
@@ -102,8 +102,6 @@ const SignUp = () => {
                     <input className='btn btn-secondary w-full text-base-100 mt-4' value='Sign Up' type="submit" />
                 </form>
                 <p className='text-center mt-4'>Already have an account <Link to='/login' className='text-primary'>Login</Link></p>
-                <div className='divider'>OR</div>
-                <button className='btn glass text-neutral w-full'>Continue with Google</button>
             </div>
         </section>
     );
