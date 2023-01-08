@@ -21,7 +21,7 @@ const BookingModal = ({product, setProduct}) => {
     ]
 
     const handleBook = data =>{
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://kt-mart-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

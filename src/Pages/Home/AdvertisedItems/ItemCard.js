@@ -8,7 +8,7 @@ const ItemCard = ({advertise, idx, setProduct}) => {
     const {data: seller = []} = useQuery({
         queryKey: ['seller'],
         queryFn: async() =>{
-            const res = await fetch(`http://localhost:5000/users/seller/${advertise?.seller_email}`);
+            const res = await fetch(`https://kt-mart-server.vercel.app/users/seller/${advertise?.seller_email}`);
             const data = await res.json();
             return data;
         }
@@ -16,7 +16,7 @@ const ItemCard = ({advertise, idx, setProduct}) => {
     const {data: currentUser = []} = useQuery({
         queryKey:['user', user?.email],
         queryFn: async() =>{
-            const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+            const res = await fetch(`https://kt-mart-server.vercel.app/users/${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -33,7 +33,7 @@ const ItemCard = ({advertise, idx, setProduct}) => {
                     <p>Years of Use: <strong>{advertise.using_period}</strong></p>
                     <p>Posted Date: <strong>{advertise.posted_date}</strong></p>
                     <p className='flex items-center gap-1'>Seller: <strong>{advertise.seller_name}</strong> {seller?.user?.genuine_seller && <TiTick className='text-blue-600'/>}</p>
-                    {currentUser?.role !== 'seller' && currentUser?.role !== 'admin' && <div className="card-actions">
+                    {user && currentUser?.role !== 'seller' && currentUser?.role !== 'admin' && <div className="card-actions">
                         <label htmlFor="booking-modal" className="btn btn-primary" onClick={() =>setProduct(advertise)}>Book Now</label>
                     </div>}
                 </div>

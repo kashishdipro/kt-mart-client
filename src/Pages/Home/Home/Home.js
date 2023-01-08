@@ -9,7 +9,7 @@ const Home = () => {
     const {data: advertisies = []} = useQuery({
         queryKey: ['advertisies'],
         queryFn: async() =>{
-            const res = await fetch('http://localhost:5000/advertisies');
+            const res = await fetch('https://kt-mart-server.vercel.app/advertisies');
             const data = await res.json();
             return data;
         }

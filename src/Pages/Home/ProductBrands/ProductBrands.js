@@ -4,7 +4,7 @@ import BrandCard from './BrandCard';
 const ProductBrands = () => {
     const [brandNames, setBrandNames] = useState([]);
     useEffect(() =>{
-        fetch('http://localhost:5000/brands')
+        fetch('https://kt-mart-server.vercel.app/brands')
         .then(res => res.json())
         .then(data => setBrandNames(data))
     },[])

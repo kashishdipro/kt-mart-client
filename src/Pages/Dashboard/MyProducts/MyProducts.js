@@ -9,7 +9,7 @@ const MyProducts = () => {
     const {data: products = [], refetch} = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async() =>{
-            const res = await fetch(`http://localhost:5000/products?seller_email=${user?.email}`);
+            const res = await fetch(`https://kt-mart-server.vercel.app/products?seller_email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -18,7 +18,7 @@ const MyProducts = () => {
     const handleDelete = id =>{
         const proceed = window.confirm('Are you sure, you want to delete this product?');
         if(proceed){
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://kt-mart-server.vercel.app/products/${id}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())
@@ -34,7 +34,7 @@ const MyProducts = () => {
     const handleStatusUpdate = id =>{
         const proceed = window.confirm('Are you sure, you want to advertise this product?');
         if(proceed){
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://kt-mart-server.vercel.app/products/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json'

@@ -8,7 +8,7 @@ const ProductCard = ({product, setProduct}) => {
     const {data: seller = []} = useQuery({
         queryKey: ['seller'],
         queryFn: async() =>{
-            const res = await fetch(`http://localhost:5000/users/seller/${product?.seller_email}`);
+            const res = await fetch(`https://kt-mart-server.vercel.app/users/seller/${product?.seller_email}`);
             const data = await res.json();
             return data;
         }
@@ -16,7 +16,7 @@ const ProductCard = ({product, setProduct}) => {
     const {data: currentUser = []} = useQuery({
         queryKey:['user', user?.email],
         queryFn: async() =>{
-            const res = await fetch(`http://localhost:5000/users/${user?.email}`);
+            const res = await fetch(`https://kt-mart-server.vercel.app/users/${user?.email}`);
             const data = await res.json();
             return data;
         }

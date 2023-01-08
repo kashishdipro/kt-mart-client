@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/brand/:name',
-                loader: ({params}) =>fetch(`http://localhost:5000/products/${params.name}`),
+                loader: ({params}) =>fetch(`https://kt-mart-server.vercel.app/products/${params.name}`),
                 element: <ProtectedRoute><BrandProducts/></ProtectedRoute>
             },
             {
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/payment/:id',
-                loader: ({params}) =>fetch(`http://localhost:5000/bookings/${params.id}`),
+                loader: ({params}) =>fetch(`https://kt-mart-server.vercel.app/bookings/${params.id}`),
                 element: <BuyerRoute><Payment/></BuyerRoute>
             },
             {

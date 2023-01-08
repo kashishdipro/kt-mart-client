@@ -8,7 +8,7 @@ const AllSellers = () => {
     const {data: sellers = [], refetch} = useQuery({
         queryKey: ['sellers'],
         queryFn: async() =>{
-            const res = await fetch('http://localhost:5000/sellers');
+            const res = await fetch('https://kt-mart-server.vercel.app/sellers');
             const data = await res.json();
             return data;
         }
@@ -17,7 +17,7 @@ const AllSellers = () => {
     const handleMakeVerified = id =>{
         const proceed = window.confirm('Are you sure, you want to verify this seller');
         if(proceed){
-            fetch(`http://localhost:5000/users/sellers/${id}`, {
+            fetch(`https://kt-mart-server.vercel.app/users/sellers/${id}`, {
                 method: 'PUT'
             })
             .then(res => res.json())
@@ -33,7 +33,7 @@ const AllSellers = () => {
     const handleDeleteSeller = id =>{
         const proceed = window.confirm('Are you sure, you want to delete this user');
         if(proceed){
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://kt-mart-server.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())

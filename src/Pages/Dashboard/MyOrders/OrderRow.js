@@ -7,7 +7,7 @@ const OrderRow = ({idx, booking}) => {
 
     const [product, setProduct] = useState([])
     useEffect(() =>{
-        axios.get(`http://localhost:5000/product/${booking?.product_id}`)
+        axios.get(`https://kt-mart-server.vercel.app/product/${booking?.product_id}`)
         .then(data =>{
             setProduct(data.data);
         })

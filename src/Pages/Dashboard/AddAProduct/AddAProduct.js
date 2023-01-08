@@ -42,7 +42,7 @@ const AddAProduct = () => {
                     img: imgData.data.url,
                     status: "available",
                 }
-                fetch('http://localhost:5000/products', {
+                fetch('https://kt-mart-server.vercel.app/products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

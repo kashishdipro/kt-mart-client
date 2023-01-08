@@ -45,7 +45,7 @@ const Login = () => {
             if(googleUser){
                 const user = {name: googleUser.displayName, email: googleUser.email, role: 'buyer'};
                 setLoginUserEmail(googleUser.email);
-                fetch('http://localhost:5000/users/', {
+                fetch('https://kt-mart-server.vercel.app/users/', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -9,7 +9,7 @@ const MyOrders = () => {
     const {data: bookings = []} = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () =>{
-            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+            const res = await fetch(`https://kt-mart-server.vercel.app/bookings?email=${user?.email}`, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -20,6 +20,9 @@ const MyOrders = () => {
     })
     return (
         <section className='m-4'>
+            {
+                bookings?.length !== 0 ?
+                <>
                 <h2 className='text-2xl text-neutral font-medium mb-4'>My Orders</h2>
                 <div className="overflow-x-auto">
                     <table className="table table-zebra w-full">
@@ -42,6 +45,12 @@ const MyOrders = () => {
                         </tbody>
                     </table>
                 </div>
+                </>
+                :
+                <div className='flex items-center justify-center'>
+                    <h2 className='text-red-500 md:text-2xl text-xl font-bold'>No Order Found</h2>
+                </div>
+            }
             
         </section>
     );

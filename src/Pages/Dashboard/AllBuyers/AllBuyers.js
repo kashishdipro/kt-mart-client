@@ -7,7 +7,7 @@ const Dashboard = () => {
     const {data: buyers = [], refetch} = useQuery({
         queryKey: ['buyers'],
         queryFn: async() =>{
-            const res = await fetch('http://localhost:5000/users/buyers');
+            const res = await fetch('https://kt-mart-server.vercel.app/users/buyers');
             const data = await res.json();
             return data;
         }
@@ -16,7 +16,7 @@ const Dashboard = () => {
     const handleDeleteBuyer = id =>{
         const proceed = window.confirm('Are you sure, you want to delete this user');
         if(proceed){
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://kt-mart-server.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())
