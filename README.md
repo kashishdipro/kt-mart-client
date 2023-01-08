@@ -21,13 +21,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 **`Also you can read blog where you can know the different ways to manage a state in a React application, prototypical inheritance work, unit test, and React vs. Angular vs. Vue`**
 
 **`If a user(buyer/seller/admin) is logged in, they will see **logout** and another option on the navbar called Dashboard. The dashboard routes will change based on the users:
-
-      **Buyers will see:** My orders,
-
-      **Sellers will see:** Add A Product and My Products.
-
-      **Admin will see:** All Sellers, All Buyers and Make Admin.
-`**
+**Buyers will see:** My orders,
+**Sellers will see:** Add A Product and My Products.
+**Admin will see:** All Sellers, All Buyers and Make Admin.`**
 
 **`If a seller on the "**Add A Product**" route adding the product, you will then be redirected to the My Products Page`**
 
